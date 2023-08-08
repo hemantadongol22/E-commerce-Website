@@ -12,16 +12,6 @@ include 'includes/header.php';
 
     <link rel="stylesheet" href="css/indexstyle.css">
     <link rel="stylesheet" href="css/recent_view.css">
-    <style>
-        h3#recent {
-            text-align: center;
-            background-color: rgb(33, 37, 41);
-            color: white;
-            padding-top: 3vh;
-            padding-bottom: 3vh;
-        }
-
-    </style>
 </head>
 
 <body>
@@ -38,6 +28,7 @@ include 'includes/header.php';
             echo '<div class="carousel-inner">';
 
             while ($row = mysqli_fetch_assoc($result)) {
+                echo '<a href="prod_detail.php?id=' . $row['id'] . '">';
                 echo '<div class="carousel-item';
                 if ($active) {
                     echo ' active';
@@ -61,6 +52,7 @@ include 'includes/header.php';
                 echo '</div>'; // Close the flex container
 
                 echo '</div>';
+                echo '</a>';
             }
 
             echo '</div>';
@@ -132,4 +124,3 @@ include 'includes/footer.php'
 ?>
 
 </html>
-

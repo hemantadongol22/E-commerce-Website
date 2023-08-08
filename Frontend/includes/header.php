@@ -9,14 +9,15 @@ $conn = $dbConnection->getConnection();
 
 <head>
     <script src="https://kit.fontawesome.com/9c2fab3cd9.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-     crossorigin="anonymous"></script>
-
+    <script src="js/popper.min.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+     crossorigin="anonymous"></script> -->
 
-    <script src="https://code.jquery.com/jquery-3.7.0.js"
-    integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.0.js"
+    integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script> -->
 
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/header.css">

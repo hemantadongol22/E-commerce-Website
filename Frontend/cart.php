@@ -85,6 +85,9 @@ const tab = "<td></td>";
 
                                 <?php
                                 $i = 1;
+                                $count = 0;
+                                print_r($_SESSION);
+                                $_SESSION['count'] = array();
                                 foreach ($_SESSION['cart'] as $product) {
                                     $id = $product['id'];
                                     $ret = mysqli_query($conn, "select * from `product` where id='$id'");
@@ -100,7 +103,6 @@ const tab = "<td></td>";
                                             <center>
                                                 <img id="imageDesign" src="../admin/image/<?php echo $row['image']; ?>" alt="#">
                                             </center>
-
                                         </td>
                                         <td>
                                             <center>
@@ -122,6 +124,10 @@ const tab = "<td></td>";
                                                 <?php echo $product['price'] * $product['quantity']; ?>
                                             </center>
                                         </td>
+                                        <?php
+                                        $_SESSION['count'][] = array($count);
+                                        $newItem['id'] = $count;
+                                        ?>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-danger">Action</button>
@@ -129,12 +135,14 @@ const tab = "<td></td>";
                                                     <span class="visually-hidden">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="delete.php?id=<?php echo $row['id']; ?>">Delete</a></li>
+                                                    <li><a class="dropdown-item" href="action.php?count=<?php echo $count; ?>">Delete</a></li>
                                                 </ul>
                                             </div>
                                         </td>
                                     </tr>
-                                <?php } ?>
+                                <?php
+                                    $count++;
+                                } ?>
                                 <tr>
                                     <td><strong>Total</strong></td>
                                     <?php
@@ -153,7 +161,9 @@ const tab = "<td></td>";
                         </table>
                         <a href="checkout.php">Proceed to Checkout</a>
                     <?php } else { ?>
-                        <p>Your cart is empty.</p>
+                        <div id='fill'>
+                            <h2 class="text-danger">Cart is empty.</h2>
+                        </div>
                     <?php } ?>
 
                     </tbody>

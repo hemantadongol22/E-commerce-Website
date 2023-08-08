@@ -1,8 +1,22 @@
-img#imageDesign{
+img#imageDesign {
     height: 25vh;
     width: 14vw;
 }
 
-div.row{
+div.row {
     min-height: 73vh;
+}
+
+div#fill {
+    margin-top: 10%;
+    min-height: 49vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+
+footer#footer {
+    min-height: 17vh;
 }

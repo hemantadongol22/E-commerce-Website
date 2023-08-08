@@ -1,4 +1,17 @@
-div.body-under{
+div.body-under {
     width: 90%;
     margin: auto;
+}
+
+h3#recent {
+    text-align: center;
+    background-color: rgb(33, 37, 41);
+    color: white;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+.carousel-inner .carousel-item img {
+    border-radius: 0;
+    /* Remove border radius */
 }
