@@ -1,0 +1,14 @@
+First time
+PS C:\Users\heman\Desktop\Mern-Workshop> git init
+PS C:\Users\heman\Desktop\Mern-Workshop> git config user.name "Hemanta Dongol"
+PS C:\Users\heman\Desktop\Mern-Workshop> git add .                                         
+PS C:\Users\heman\Desktop\Mern-Workshop> git commit -m 'feat: dom traverse and get values using document obj'
+PS C:\Users\heman\Desktop\Mern-Workshop> git remote add origin https://github.com/hemantadongol22/Workshop_day1.git
+PS C:\Users\heman\Desktop\Mern-Workshop> git push -u origin master
+ 
+
+
+Second time
+git add .
+git commit -m 'fix'
+git push

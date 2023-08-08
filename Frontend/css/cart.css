@@ -1,0 +1,8 @@
+img#imageDesign{
+    height: 25vh;
+    width: 14vw;
+}
+
+div.row{
+    min-height: 73vh;
+}
