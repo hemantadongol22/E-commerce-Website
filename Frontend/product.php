@@ -20,28 +20,29 @@ include 'includes/header.php';
             if (mysqli_num_rows($result) > 0) {
                 $i = 1;
 
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<div id='product'>";
-                    echo '<img src="../admin/image/' . $row['image'] . '" height="330px" width="400px" id="primg">';
-                    echo '<p id="name_bold">' . $row['name'] . '</p>';
-                    echo '<p id="name"> Available quantity: ' . $row['quantity'] . '</p>';
-                    echo '<p id="name"> Price: ' . $row['price'] . '</p>';
-                    echo '<a class="buton_view" href="prod_detail.php?id=' . $row['id'] . '">Order now</a><br>';
+                while ($row = mysqli_fetch_assoc($result)) { ?>
+                    <div id='product'>
+                        <img src="../admin/image/<?php echo $row['image']; ?>" height="330px" width="400px" id="primg" alt="#">
+                        <p id="name_bold"><?php echo $row['name']; ?></p>
+                        <p id="name"> Available quantity: <?php echo $row['quantity']; ?></p>
+                        <p id="name"> Price: <?php echo $row['price']; ?></p>
+                        <a class="buton_view" href="prod_detail.php?id=<?php echo $row['id']; ?>">Order now</a><br>
+                    </div>
+                    </a><?php
 
-                    echo "</div>";
-                    $i += 1;
+                        $i += 1;
+                    }
+                    // Free result set
+                    mysqli_free_result($result);
+                } else {
+                    echo "No records found";
                 }
-                // Free result set
-                mysqli_free_result($result);
             } else {
-                echo "No records found";
+                echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
             }
-        } else {
-            echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-        }
-        // Close connection
-        mysqli_close($conn);
-        ?>
+            // Close connection
+            mysqli_close($conn);
+                        ?>
     </main>
 </body>
 
