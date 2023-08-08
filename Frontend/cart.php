@@ -1,21 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 session_start();
-if (file_exists('includes/header.php')) {
-    include 'includes/header.php';
-}
-ob_start();
-?>
+include 'includes/header.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
-    <link rel="stylesheet" href="./css/cart.css">
-</head>
-
-<?php
 // Function to add product to the cart (you can implement other cart operations as well)
 function addToCart($productDetails)
 {
@@ -25,8 +11,8 @@ function addToCart($productDetails)
     }
 
     // Check if the product already exists in the cart
-    foreach ($_SESSION['cart'] as &$cartItem) {
-        if ($cartItem['id'] === $productDetails['id']) {
+    foreach ($_SESSION['cart'] as $productId => &$cartItem) {
+        if ($productId === $productDetails['id']) {
             // If the product exists, update the quantity
             $cartItem['quantity'] += $productDetails['quantity'];
             return; // Exit the function
@@ -34,7 +20,15 @@ function addToCart($productDetails)
     }
 
     // If the product is not found in the cart, add it
-    $_SESSION['cart'][] = $productDetails;
+    $_SESSION['cart'][$productDetails['id']] = $productDetails;
+}
+
+function deleteFromCart($productId)
+{
+    if (isset($_SESSION['cart'][$productId])) {
+        unset($_SESSION['cart'][$productId]);
+        header('location: cart.php');
+    }
 }
 
 // Check if the cookie exists and has cart data
@@ -46,6 +40,10 @@ if (isset($_COOKIE['cartData'])) {
     setcookie('cartData', '', time() - 3600, "/");
 }
 
+if (isset($_GET['delete_product'])) {
+    $deleteProductId = intval($_GET['delete_product']);
+    deleteFromCart($deleteProductId);
+}
 
 // Function to calculate the total cart price
 function calculateTotalPrice()
@@ -58,16 +56,24 @@ function calculateTotalPrice()
     }
     return $totalPrice;
 }
-
-const tab = "<td></td>";
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="./css/cart.css">
+</head>
+
 <body>
-    <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) { ?>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="card col-md-12 mt-3">
-                    <div class="card-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card col-md-12 ">
+                <div class="card-body">
+                    <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) { ?>
                         <table class="table table-hover">
                             <caption></caption>
                             <thead>
@@ -82,52 +88,32 @@ const tab = "<td></td>";
                                 </tr>
                             </thead>
                             <tbody>
-
                                 <?php
                                 $i = 1;
-                                $count = 0;
-                                print_r($_SESSION);
-                                $_SESSION['count'] = array();
-                                foreach ($_SESSION['cart'] as $product) {
-                                    $id = $product['id'];
+                                foreach ($_SESSION['cart'] as $productId => $cartItem) {
+                                    $id = $cartItem['id'];
                                     $ret = mysqli_query($conn, "select * from `product` where id='$id'");
                                     $row = mysqli_fetch_array($ret);
                                 ?>
                                     <tr>
                                         <td>
-                                            <center>
-                                                <?php echo $i++ ?>
-                                            </center>
+                                            <center><?php echo $i++ ?></center>
                                         </td>
                                         <td>
-                                            <center>
-                                                <img id="imageDesign" src="../admin/image/<?php echo $row['image']; ?>" alt="#">
-                                            </center>
+                                            <center><img id="imageDesign" src="../admin/image/<?php echo $row['image']; ?>" alt="#"></center>
                                         </td>
                                         <td>
-                                            <center>
-                                                <?php echo $product['name']; ?>
-                                            </center>
+                                            <center><?php echo $cartItem['name']; ?></center>
                                         </td>
                                         <td>
-                                            <center>
-                                                <?php echo $product['price']; ?>
-                                            </center>
+                                            <center><?php echo $cartItem['price']; ?></center>
                                         </td>
                                         <td>
-                                            <center>
-                                                <?php echo $product['quantity']; ?>
-                                            </center>
+                                            <center><?php echo $cartItem['quantity']; ?></center>
                                         </td>
                                         <td>
-                                            <center>
-                                                <?php echo $product['price'] * $product['quantity']; ?>
-                                            </center>
+                                            <center><?php echo $cartItem['price'] * $cartItem['quantity']; ?></center>
                                         </td>
-                                        <?php
-                                        $_SESSION['count'][] = array($count);
-                                        $newItem['id'] = $count;
-                                        ?>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-danger">Action</button>
@@ -135,29 +121,21 @@ const tab = "<td></td>";
                                                     <span class="visually-hidden">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="action.php?count=<?php echo $count; ?>">Delete</a></li>
+                                                    <li><a class="dropdown-item" href="?delete_product=<?php echo $productId; ?>">Delete</a></li>
                                                 </ul>
                                             </div>
                                         </td>
                                     </tr>
-                                <?php
-                                    $count++;
-                                } ?>
+                                <?php } ?>
                                 <tr>
                                     <td><strong>Total</strong></td>
-                                    <?php
-                                    echo tab;
-                                    echo tab;
-                                    echo tab;
-                                    echo tab;
-                                    ?>
+                                    <td colspan="4"></td>
                                     <td>
-                                        <center>
-                                            <?php echo calculateTotalPrice(); ?>
-                                        </center>
+                                        <center><?php echo calculateTotalPrice(); ?></center>
                                     </td>
-                                    <?php echo tab; ?>
+                                    <td></td>
                                 </tr>
+                            </tbody>
                         </table>
                         <a href="checkout.php">Proceed to Checkout</a>
                     <?php } else { ?>
@@ -165,19 +143,15 @@ const tab = "<td></td>";
                             <h2 class="text-danger">Cart is empty.</h2>
                         </div>
                     <?php } ?>
-
-                    </tbody>
-                    </table>
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-
-        <?php
-        include 'includes/footer.php';
-        ob_end_flush();
-        ?>
+    <?php
+    include 'includes/footer.php';
+    ob_end_flush();
+    ?>
 </body>
 
 </html>

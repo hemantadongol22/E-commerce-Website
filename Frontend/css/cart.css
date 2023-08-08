@@ -8,15 +8,14 @@ div.row {
 }
 
 div#fill {
-    margin-top: 10%;
     min-height: 49vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 footer#footer {
-    min-height: 17vh;
+    min-height: 10vh;
 }
