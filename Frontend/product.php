@@ -41,8 +41,7 @@ include 'includes/header.php';
                 echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
             }
             // Close connection
-            mysqli_close($conn);
-                        ?>
+            mysqli_close($conn); ?>
     </main>
 </body>
 
