@@ -91,9 +91,8 @@
     <!-- Modal content -->
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Edit products</h5>
-        <span class="close">&times;</span>
-        </button>
+        <span span class='close' onclick='closeModal()'>&times;</span>
+
       </div>
 
       <?php include 'navbar.php'; ?>
@@ -148,4 +147,3 @@
 </body>
 
 </html>
-

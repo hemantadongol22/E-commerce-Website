@@ -19,3 +19,17 @@ div#fill {
 footer#footer {
     min-height: 10vh;
 }
+
+#checkout_button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#checkout_button:hover {
+    background-color: #11ca17;
+    color: white;
+
+}

@@ -104,7 +104,10 @@ $productId = $row['id'];
 
                     <div class="row">
                         <div class="col-md-6">
-                            <p><b>Quantity</b></p><input type="number" min="1" value="1" id="qty" max=<?php echo $row['quantity']; ?>>
+                            <p><b>Quantity</b></p>
+                            <div class="form-outline">
+                                <input class="form-control" type="number" min="1" value="1" id="qty" max=<?php echo $row['quantity']; ?>>
+                            </div>
                         </div>
                     </div>
                     <br>

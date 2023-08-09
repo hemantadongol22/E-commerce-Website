@@ -106,7 +106,7 @@ include 'includes/header.php';
 
             while ($row = mysqli_fetch_assoc($res)) {
                 echo "<div id='product'>";
-                echo '<img src="../admin/image/' . $row['image'] . '" height="330px" width="330px" id="primg">';
+                echo '<img src="../admin/image/' . $row['image'] . '" height="230px" width="300px" id="primg">';
                 echo '<p id="name_bold">' . $row['name'] . '</p>';
                 echo '<p id="name"> Available quantity: ' . $row['quantity'] . '</p>';
                 echo '<p id="name"> Price: ' . $row['price'] . '</p>';

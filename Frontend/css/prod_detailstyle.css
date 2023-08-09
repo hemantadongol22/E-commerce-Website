@@ -1,40 +1,17 @@
-/* img#proddisp_img{
-    margin-right: 5%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 90%;
-    height: auto;
-} */
-
-/* #title_prod{
-    text-align: center;
-    padding-top: 3%;
-    font-family:Arial, Helvetica, sans-serif;
-    font-weight: bold;
-} */
-
-/* div.gap{
-    width: 90%;
-    margin: auto;
-    height: 40%;
-
-} */
-
-marquee{
+marquee {
     font-size: large;
     font-weight: bold;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-footer#footer{
-    min-height: 17vh;  
+footer#footer {
+    min-height: 17vh;
 }
 
-input#buton_view{
+input#buton_view {
     text-decoration: none;
     border-style: none;
-    background-color:rgb(245, 114, 36);
+    background-color: rgb(245, 114, 36);
     margin: auto;
     width: 188.2px;
     height: 41.6px;
@@ -43,6 +20,6 @@ input#buton_view{
     margin-bottom: 10px;
 }
 
-input#butoon_view:hover{
-    background-color:rgb(208, 97, 32);
+input#buton_view:hover {
+    background-color: rgb(255, 149, 27);
 }
