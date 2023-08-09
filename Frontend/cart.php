@@ -9,6 +9,15 @@ if (isset($_GET['delete_product'])) {
     deleteFromCart(intval($_GET['delete_product']));
 }
 
+if (isset($_GET['id'])  && isset($_GET['qty'])) {
+    $idItem = intval($_GET['id']);
+    $idQty = intval($_GET['qty']);
+    // echo $idItem;
+    // echo $idQty;
+    // print_r($_SESSION['cart'][$idItem]);
+    $_SESSION['cart'][$idItem]['quantity'] = $idQty;
+}
+
 // Function to add product to the cart (you can implement other cart operations as well)
 function addToCart($productDetails)
 {
@@ -71,6 +80,7 @@ function calculateTotalPrice()
 </head>
 
 <body>
+    <?php print_r($_SESSION) ?>
     <div class="container-fluid">
         <div class="row">
             <div class="card col-md-12 ">
@@ -94,8 +104,6 @@ function calculateTotalPrice()
     ?>
 
     <?php
-    // Functions
-
     // Function to render the cart table
     function renderCartTable()
     {
@@ -135,10 +143,16 @@ function calculateTotalPrice()
                             <center><?php echo $cartItem['price']; ?></center>
                         </td>
                         <td>
-                            <center><?php echo $cartItem['quantity']; ?></center>
+                            <center>
+                                <div class="form-outline">
+                                    <input type="number" class="form-control" value="<?php echo $cartItem['quantity']; ?>" name="quantity_<?php echo $productId; ?>" style="text-align:center;" min=1 max=<?php echo $row['quantity']; ?>>
+                                </div>
+                            </center>
                         </td>
                         <td>
-                            <center><?php echo $cartItem['price'] * $cartItem['quantity']; ?></center>
+                            <center>
+                                <?php echo $cartItem['price'] * $cartItem['quantity']; ?>
+                            </center>
                         </td>
                         <td>
                             <div class="btn-group">
@@ -147,10 +161,16 @@ function calculateTotalPrice()
                                     <span class="visually-hidden">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu">
+                                    <li>
+                                        <button class="dropdown-item" onclick="update_product(<?php echo intval($productId); ?>, <?php echo $productId; ?>)">
+                                            Update
+                                        </button>
+                                    </li>
                                     <li><a class="dropdown-item" href="?delete_product=<?php echo $productId; ?>">Delete</a></li>
                                 </ul>
                             </div>
                         </td>
+
                     </tr>
                 <?php } ?>
                 <tr>
@@ -166,6 +186,16 @@ function calculateTotalPrice()
     <?php
     }
     ?>
+
+    <script>
+        function update_product(productId, inputId) {
+            var newQuantity = document.getElementsByName('quantity_' + inputId)[0].value;
+            var id = productId;
+            var qty = encodeURIComponent(newQuantity);
+            console.log(qty, id);
+            window.location.href = 'cart.php?id=' + id + '&qty=' + qty;
+        }
+    </script>
 </body>
 
 </html>
