@@ -15,24 +15,23 @@
     </div>
 
     <div id="body_modal">
-        <form action="/" id="modal_form">
+        <form action="checkout_process.php" id="modal_form" method="post">
             <div class="item">
-                <p>Name</p>
+                <p>Email Address</p>
                 <div class="name-item">
-                    <input type="text" name="name" placeholder="First" id="inp" />
-                    <input type="text" name="name" placeholder="Last" id="inp" />
+                    <input type="email" name="email" id="inp" required />
                 </div>
             </div>
             <div class="item">
                 <p>Billing Address</p>
-                <input type="text" name="name" id="inp" />
+                <input type="text" name="bill_add" id="inp" required />
             </div>
             <div class="item">
                 <p>Shipping Address</p>
-                <textarea rows="3" id="modal_ship" required></textarea>
+                <textarea rows="3" id="modal_ship" name="ship_add" required></textarea>
             </div>
             <div class="btn-block">
-                <button type="submit" href="/" id="modal_button">APPLY</button>
+                <input type="submit" id="modal_button" value="Confirm">
             </div>
         </form>
     </div>

@@ -23,7 +23,7 @@ $conn = $dbConnection->getConnection();
     <link rel="stylesheet" href="css/header.css">
 </head>
 <style>
-    *{
+    * {
         z-index: 0;
     }
 </style>
@@ -35,9 +35,7 @@ $conn = $dbConnection->getConnection();
                 <img src="company_logo/HD logo.png" alt="#">
                 HD Company
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -64,8 +62,7 @@ $conn = $dbConnection->getConnection();
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button"
-                         data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Orders
                         </a>
                         <ul class="dropdown-menu">
@@ -73,12 +70,8 @@ $conn = $dbConnection->getConnection();
                                     <i class="fa-solid fa-cart-shopping"></i>&nbspCart</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="checkorder.php">
-                                    <i class="fa-solid fa-square-check"></i>&nbspCheck Confirmation</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="finalorder.php">
-                                    <i class="fa-solid fa-circle-check"></i>&nbspOrder Confirmation</a>
+                                <a class="dropdown-item" href="order_details.php">
+                                    <i class="fa-solid fa-circle-check"></i>&nbspOrder Details</a>
                             </li>
                         </ul>
                     </li>
@@ -86,8 +79,7 @@ $conn = $dbConnection->getConnection();
                 </ul>
 
                 <form class="d-flex" role="search" action="search.php" method="post">
-                    <input class="form-control me-2" type="search" placeholder="Enter Product Name"
-                    aria-label="Search" name="search" required>
+                    <input class="form-control me-2" type="search" placeholder="Enter Product Name" aria-label="Search" name="search" required>
                     <button class="btn btn-outline-success" type="submit" name="submit">Search</button>
                 </form>
             </div>
@@ -96,4 +88,5 @@ $conn = $dbConnection->getConnection();
 
 
 </body>
+
 </html>
