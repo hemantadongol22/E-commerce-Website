@@ -79,7 +79,7 @@ include 'includes/header.php';
                                                 <td><?php echo $cnt; ?></td>
                                                 <td><?php echo $row['orderid']; ?></td>
                                                 <td class="cart-image">
-                                                    <img src="../admin/image/<?php echo $row['primg']; ?>" alt="#" width="250vw" height="200vh">
+                                                    <img src="../admin/image/<?php echo $row['primg']; ?>" alt="#" width="200vw" height="150vh">
                                                 </td>
                                                 <td class="cart-product-name-info">
                                                     <h6 class='cart-product-description'>
@@ -93,9 +93,9 @@ include 'includes/header.php';
                                                 </td>
                                                 <td class="cart-product-sub-total"><?php echo $row['prprice']; ?></td>
                                                 <td class="cart-product-grand-total"><?php echo $row['totprice']; ?></td>
-                                                <td class="cart-product-sub-total"><?php echo $row['ordate']; ?></td>
                                                 <td class="cart-product-sub-total"><?php echo $row['shipadd']; ?></td>
                                                 <td class="cart-product-sub-total"><?php echo $row['billadd']; ?></td>
+                                                <td class="cart-product-sub-total"><?php echo $row['ordate']; ?></td>
                                             </tr>
                                     <?php
                                             $cnt = $cnt + 1;
