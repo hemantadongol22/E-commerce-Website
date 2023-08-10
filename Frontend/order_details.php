@@ -20,16 +20,12 @@ include 'includes/header.php';
 </head>
 
 <body class="cnt-home">
-    <div class="breadcrumb">
-        <div class="container">
-            <div class="breadcrumb-inner">
-                <ul class="list-inline list-unstyled">
-                    <li class='active'>Shopping Cart</li>
-                </ul>
-            </div><!-- /.breadcrumb-inner -->
-        </div><!-- /.container -->
-    </div><!-- /.breadcrumb -->
-
+    <br>
+    <center>
+        <h3>Order Details</h3>
+    </center>
+    <br>
+    <br>
     <div class="body-content outer-top-xs">
         <div class="container">
             <div class="row inner-bottom-sm">
