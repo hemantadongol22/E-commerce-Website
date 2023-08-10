@@ -35,8 +35,6 @@ include 'includes/header.php';
                             <form name="cart" method="post">
 
                                 <table class="table table-bordered">
-
-
                                     <?php
                                     $query = mysqli_query($conn, "SELECT op.oid as orderid, op.qty as orderqty,
                                             op.price as totprice, op.order_date as ordate, p.name as prname, p.image as primg,
@@ -101,10 +99,8 @@ include 'includes/header.php';
 
                                     </tbody><!-- /tbody -->
                                 </table><!-- /table -->
-
                         </div>
                     </div>
-
                 </div><!-- /.shopping-cart -->
             </div> <!-- /.row -->
             </form>
