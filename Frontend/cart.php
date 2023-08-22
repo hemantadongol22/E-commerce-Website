@@ -16,7 +16,8 @@ include 'cart_functions.php';
 </head>
 
 <body>
-    <?php print_r($_SESSION) ?>
+    <?php //print_r($_SESSION) 
+    ?>
     <div class="container-fluid">
         <div class="row">
             <div class="card col-md-12 ">

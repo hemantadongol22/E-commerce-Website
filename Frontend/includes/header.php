@@ -8,6 +8,18 @@ $conn = $dbConnection->getConnection();
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBR41GKGZW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YBR41GKGZW');
+    </script>
     <script src="https://kit.fontawesome.com/9c2fab3cd9.js" crossorigin="anonymous"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/jquery.js"></script>

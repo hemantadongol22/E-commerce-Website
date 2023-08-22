@@ -15,6 +15,7 @@ include 'includes/header.php';
 <body>
     <main>
         <?php
+        $item = array();
         $sql = "SELECT * FROM product order by `name`";
         if ($result = mysqli_query($conn, $sql)) {
             if (mysqli_num_rows($result) > 0) {
@@ -27,6 +28,16 @@ include 'includes/header.php';
                         <p id="name"> Available quantity: <?php echo $row['quantity']; ?></p>
                         <p id="name"> Price: <?php echo $row['price']; ?></p>
                         <a class="buton_view" href="prod_detail.php?id=<?php echo $row['id']; ?>">Order now</a><br>
+                        <?php
+                        $item = array(
+                            "item_id" => $row["id"],
+                            "item_name" => $row["name"],
+                            "quantity" => intval($row["quantity"]),
+                            "price" => floatval($row["price"]),
+                            "description" => $row["description"]
+                        );
+                        $items[] = $item;
+                        ?>
                     </div>
                     </a><?php
 
@@ -41,9 +52,31 @@ include 'includes/header.php';
                 echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
             }
             // Close connection
-            mysqli_close($conn); ?>
+            mysqli_close($conn);
+            // print_r($items);
+                        ?>
     </main>
 </body>
+<?php
+foreach ($items as $item) {
+?>
+    <!-- Place the gtag code snippet inside the loop -->
+    <script>
+        gtag('event', 'view_item', {
+            currency: 'USD',
+            value: <?php echo $item['price']; ?>,
+            items: [{
+                item_id: '<?php echo $item['item_id']; ?>',
+                item_name: '<?php echo $item['item_name']; ?>',
+                quantity: <?php echo $item['quantity']; ?>,
+                price: <?php echo $item['price']; ?>,
+                description: <?php echo $item['description']; ?>
+            }]
+        });
+    </script>
+<?php
+}
+?>
 
 </html>
 

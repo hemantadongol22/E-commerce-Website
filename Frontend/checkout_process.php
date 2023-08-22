@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $billingAddress = $_POST['bill_add'];
     $shippingAddress = $_POST['ship_add'];
     $email = $_POST['email'];
+    $item = array();
 
     date_default_timezone_set('Asia/Kathmandu');
     $ldateFormatted = date('Y-m-d H:i:s');
@@ -40,8 +41,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($conn->query($orderedProductInsertQuery) !== true) {
             echo 'Failed to insert ordered product';
         }
+
+        $item = array(
+            "item_id" => $cartItem['id'],
+            "item_name" => $cartItem['name'],
+            "price" => floatval($cartItem['price']),
+            "quantity" => intval($cartItem['quantity'])
+        );
+        $items[] = $item;
     }
 
     unset($_SESSION['cart']);
     header('location:order_details.php');
+
+    foreach ($items as $item) {
+?>
+        <!-- Place the gtag code snippet inside the loop -->
+        <script>
+            gtag('event', 'checkout_begin', {
+                currency: 'USD',
+                value: <?php echo $item['price']; ?>,
+                items: [{
+                    item_id: '<?php echo $item['item_id']; ?>',
+                    item_name: '<?php echo $item['item_name']; ?>',
+                    quantity: <?php echo $item['quantity']; ?>,
+                    price: <?php echo $item['price']; ?>,
+                    billadd: $billingAddress,
+                    shipadd: $shippingAddress
+                }]
+            });
+        </script>
+<?php
+    }
 }

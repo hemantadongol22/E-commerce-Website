@@ -68,6 +68,17 @@ include 'includes/header.php';
 
                                         $cnt = 1;
                                         while ($row = mysqli_fetch_assoc($query)) {
+                                            $item = array(
+                                                "order_id" => $row['orderid'],
+                                                "product_id" => $row['pr_id'],
+                                                "item_name" => $row['prname'],
+                                                "price" => floatval($row['prprice']),
+                                                "quantity" => intval($row['orderqty']),
+                                                "total" => floatval($row['totprice']),
+                                                "shipping_address" => $row['shipadd'],
+                                                "billing_address" => $row['billadd']
+                                            );
+                                            $items[] = $item;
                                         ?>
                                             <tr>
                                                 <td><?php echo $cnt; ?></td>
@@ -106,8 +117,31 @@ include 'includes/header.php';
             </form>
         </div><!-- /.container -->
     </div><!-- /.body-content -->
-
+    <?php
+    // print_r($items);
+    ?>
 </body>
+
+<?php
+foreach ($items as $item) {
+?>
+    <script>
+        gtag('event', 'order_details', {
+            items: [{
+                order_id: '<?php echo $item['order_id']; ?>',
+                item_id: '<?php echo $item['product_id']; ?>',
+                item_name: '<?php echo $item['item_name']; ?>',
+                quantity: <?php echo $item['quantity']; ?>,
+                price: <?php echo $item['price']; ?>,
+                total: <?php echo $item['total']; ?>,
+                billadd: '<?php echo $item['billing_address']; ?>',
+                shipadd: '<?php echo $item['shipping_address']; ?>'
+            }]
+        });
+    </script>
+<?php
+}
+?>
 
 </html>
 

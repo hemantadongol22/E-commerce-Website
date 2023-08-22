@@ -83,10 +83,20 @@ function renderCartTable()
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($_SESSION['cart'] as $productId => $cartItem) {
+            <?php
+            $item = array();
+            foreach ($_SESSION['cart'] as $productId => $cartItem) {
                 $id = $cartItem['id'];
                 $ret = mysqli_query($conn, "select * from `product` where id='$id'");
                 $row = mysqli_fetch_array($ret);
+                $item = array(
+                    "item_id" => $cartItem["id"],
+                    "item_name" => $cartItem['name'],
+                    "quantity" => intval($cartItem["quantity"]),
+                    "price" => floatval($cartItem['price']),
+                    "total" => floatval($cartItem['price'] * $cartItem['quantity'])
+                );
+                $items[] = $item;
             ?>
                 <tr>
                     <td>
@@ -142,6 +152,26 @@ function renderCartTable()
             </tr>
         </tbody>
     </table>
+    <?php
+    // print_r($items);
+
+    // Assume $items is the dynamic array of items
+
+    foreach ($items as $item) {
+    ?>
+        <!-- Place the gtag code snippet inside the loop -->
+        <script>
+            gtag('event', 'cart_view', {
+                items: [{
+                    item_id: '<?php echo $item['item_id']; ?>',
+                    item_name: '<?php echo $item['item_name']; ?>',
+                    quantity: <?php echo $item['quantity']; ?>,
+                    total: <?php echo $item['total']; ?>,
+                }]
+            });
+        </script>
 <?php
+        // print_r($items);
+    }
 }
 ?>
